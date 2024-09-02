@@ -56,9 +56,28 @@ const addNumbersNestedAF = (num1) => (num2) => {return num1+num2}
 
 console.log(addNumbersNestedAF(3)(4));
 
-//
+// Greetings and string ...
 
 const greet = (name = "World") => `Hello ${name}`;
 
 console.log(greet());
 console.log(greet("Henri"));
+
+// Map and filter.
+
+const NewArray = [1, 2, 3, 4, 5];
+
+const addedArray = NewArray.map(element => element + 5);
+
+console.log(NewArray);
+console.log(addedArray);
+
+//
+
+const threeParameters = NewArray.map((element, index, array) => {
+    console.log(element, index, array)
+
+    return element + 5
+});
+
+console.log({threeParameters});
