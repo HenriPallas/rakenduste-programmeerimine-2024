@@ -55,3 +55,10 @@ console.log(addNumbersNested(3)(4));
 const addNumbersNestedAF = (num1) => (num2) => {return num1+num2}
 
 console.log(addNumbersNestedAF(3)(4));
+
+//
+
+const greet = (name = "World") => `Hello ${name}`;
+
+console.log(greet());
+console.log(greet("Henri"));
