@@ -1,20 +1,29 @@
-import './App.css';
-import Name from './components/Name';
-import React from 'react';
-import Counter from './components/Counter';
-import PropDrilling from './components/PropDrilling';
-
-// <React.Fragment></React.Fragment>
+import React, { useState } from "react"
+import "./App.css"
+import Name from "./components/Name"
+import Counter from "./components/Counter"
+import PropDrilling from "./components/PropDrilling"
+import Show from "./components/Show"
+import Context from "./components/Context"
 
 function App() {
-  return ( 
+  const [show, setShow] = useState(true)
+
+  const toggleShow = () => setShow(prevShow => !prevShow)
+
+  return (
     <>
+      <Context />
+      <Show
+        show={show}
+        toggleShow={toggleShow}
+      />
       <PropDrilling />
-      <Name title="Henri"/>
-      <Name />
       <Counter />
+      <Name title="Henri" />
+      <Name />
     </>
   )
 }
 
-export default App;
+export default App
