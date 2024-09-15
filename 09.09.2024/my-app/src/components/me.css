@@ -1,0 +1,11 @@
+.me-flex {
+    align-items: center;
+    border:black solid 2px;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.contact-form {
+    margin-bottom: 25px;
+}

@@ -5,9 +5,10 @@ import Counter from "./components/Counter"
 import PropDrilling from "./components/PropDrilling"
 import Show from "./components/Show"
 import Context from "./components/Context"
-import MyButton from "./components/Button"
+import Me from "./components/Me"
+/*import MyButton from "./components/Button"
 import AvatarImage from "./components/Image"
-import List from "./components/List"
+import List from "./components/List"*/
 
 function App() {
   const [show, setShow] = useState(true)
@@ -36,6 +37,7 @@ function App() {
       <MyButton count={count} onClick={handleClick} />
       <AvatarImage /
       <List />*/}
+      <Me />
     </>
   )
 }
