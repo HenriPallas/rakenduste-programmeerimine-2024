@@ -5,6 +5,7 @@ import Counter from "./components/Counter"
 import PropDrilling from "./components/PropDrilling"
 import Show from "./components/Show"
 import Context from "./components/Context"
+import MyButton from "./components/Button"
 
 function App() {
   const [show, setShow] = useState(true)
@@ -22,6 +23,7 @@ function App() {
       <Counter />
       <Name title="Henri" />
       <Name />
+      <MyButton />
     </>
   )
 }
