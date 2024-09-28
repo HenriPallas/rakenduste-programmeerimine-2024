@@ -1,6 +1,9 @@
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, List, ListItem, Typography, Accordion, AccordionActions, AccordionSummary, AccordionDetails, Button } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useEffect, useState } from "react";
 import SubmitCat from "./SubmitCat";
+import EditCat from "./EditCat";
+import DeleteCat from "./DeleteCat";
 
 type Cat = {
   id: string;
@@ -24,15 +27,40 @@ const Cats = () => {
     fetchCats();
   }, []);
 
+  const [expanded, setExpanded] = React.useState<string | false>('panel1');
+
+  const handleChange =
+  (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false);
+  };
+
   return (
     <Box>
+
       <Typography variant="h3">Cats</Typography>
-      <List>
-        {cats.map((cat) => (
-          <ListItem key={cat.id}>{JSON.stringify(cat)}</ListItem>
-        ))}
-      </List>
+
+        <List>
+          {cats.map((cat) => (
+            <ListItem key={cat.id}>
+              <Accordion expanded={expanded === `cat${cat.id}`} onChange={handleChange(`cat${cat.id}`)}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="todo-content"
+                  id="todo-header"
+                >
+                {cat.name}
+                </AccordionSummary>
+                <AccordionDetails>
+                  <EditCat cat={cat} fetchCats={fetchCats}/>
+                  <DeleteCat catID={cat.id} fetchCats={fetchCats}/>
+                </AccordionDetails>
+              </Accordion>
+            </ListItem>
+          ))}
+        </List>
+
       <SubmitCat fetchCats={fetchCats} />
+
     </Box>
   );
 };
