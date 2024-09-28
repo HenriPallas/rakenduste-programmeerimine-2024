@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography, Accordion, AccordionActions, AccordionSummary, AccordionDetails, Button } from "@mui/material";
+import { Box, List, ListItem, Typography, Accordion, AccordionSummary, AccordionDetails, Stack } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useEffect, useState } from "react";
 import SubmitTodo from "./SubmitTodo";
@@ -44,29 +44,41 @@ const Todos = () => {
   return (
     <Box>
 
+      <Stack gap={5}>
+
+      <Box
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
       <Typography variant="h3">To-do list</Typography>
+      </Box>
 
-        <List>
-          {filteredTodos.map((todo) => (
-            <ListItem key={todo.id}>
-              <Accordion expanded={expanded === `todo${todo.id}`} onChange={handleChange(`todo${todo.id}`)}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="todo-content"
-                  id="todo-header"
-                >
-                {todo.title}
-                </AccordionSummary>
-                <AccordionDetails>
-                  <EditTodo todo={todo} fetchTodos={fetchTodos} closeAccordion={closeAccordion}/>
-                  <DeleteTodo todoID={todo.id} fetchTodos={fetchTodos}/>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-          ))}
-        </List>
-
+        <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <List>
+            {filteredTodos.map((todo) => (
+              <ListItem key={todo.id}>
+                <Accordion expanded={expanded === `todo${todo.id}`} onChange={handleChange(`todo${todo.id}`)}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="todo-content"
+                    id="todo-header"
+                  >
+                  {todo.title}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <EditTodo todo={todo} fetchTodos={fetchTodos} closeAccordion={closeAccordion}/>
+                    <DeleteTodo todoID={todo.id} fetchTodos={fetchTodos}/>
+                  </AccordionDetails>
+                </Accordion>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      
       <SubmitTodo fetchTodos={fetchTodos} />
+
+      </Stack>
 
     </Box>
   );

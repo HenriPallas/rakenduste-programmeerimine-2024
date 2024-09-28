@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography, Accordion, AccordionActions, AccordionSummary, AccordionDetails, Button } from "@mui/material";
+import { Box, List, ListItem, Typography, Accordion, AccordionSummary, AccordionDetails, Stack } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useEffect, useState } from "react";
 import SubmitCat from "./SubmitCat";
@@ -43,29 +43,37 @@ const Cats = () => {
   return (
     <Box>
 
-      <Typography variant="h3">Cats</Typography>
+      <Stack gap={5}>
 
-        <List>
-          {filteredCats.map((cat) => (
-            <ListItem key={cat.id}>
-              <Accordion expanded={expanded === `cat${cat.id}`} onChange={handleChange(`cat${cat.id}`)}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="todo-content"
-                  id="todo-header"
-                >
-                {cat.name}
-                </AccordionSummary>
-                <AccordionDetails>
-                  <EditCat cat={cat} fetchCats={fetchCats} closeAccordion={closeAccordion}/>
-                  <DeleteCat catID={cat.id} fetchCats={fetchCats}/>
-                </AccordionDetails>
-              </Accordion>
-            </ListItem>
-          ))}
-        </List>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Typography variant="h3">Cats</Typography>
+      </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <List>
+            {filteredCats.map((cat) => (
+              <ListItem key={cat.id}>
+                <Accordion expanded={expanded === `cat${cat.id}`} onChange={handleChange(`cat${cat.id}`)}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="todo-content"
+                    id="todo-header"
+                  >
+                  {cat.name}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <EditCat cat={cat} fetchCats={fetchCats} closeAccordion={closeAccordion}/>
+                    <DeleteCat catID={cat.id} fetchCats={fetchCats}/>
+                  </AccordionDetails>
+                </Accordion>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
 
       <SubmitCat fetchCats={fetchCats} />
+
+      </Stack>
 
     </Box>
   );

@@ -26,7 +26,7 @@ const todos = [
   ];
   
   exports.create = (req, res) => {
-    const { title } = req.body;
+    const { title, priority } = req.body;
   
     if (!title || title === "") {
       return res
@@ -37,7 +37,7 @@ const todos = [
     const newTodo = {
       id: todos.length+1,
       title: title,
-      priority: 0,
+      priority: priority,
       createdAt: Date.now(),
       updatedAt: null,
       deleted: false,

@@ -8,6 +8,7 @@ type SubmitTodoProps = {
 const SubmitTodo = ({fetchTodos}: SubmitTodoProps) => {
 
     const [title, setTitle] = useState("");
+    const [priority, setPriority] = useState(0);
 
     const SubmitTodo = async () => {
       try {
@@ -17,7 +18,7 @@ const SubmitTodo = ({fetchTodos}: SubmitTodoProps) => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title: title }),
+          body: JSON.stringify({ title: title, priority: priority }),
         });
   
         if (response.ok) {
@@ -45,10 +46,21 @@ const SubmitTodo = ({fetchTodos}: SubmitTodoProps) => {
         >
             <form onSubmit={handleSubmit}>
                 <Stack>
+                  <Box>
                     <TextField
                         label="To-do title"
                         onChange={(event) => setTitle(event.target.value)}
                     />
+
+                    <TextField 
+                        label="Priority"
+                        type="number"
+                        onChange={(event) => setPriority(Number(event.target.value))}
+                        inputProps={{ 
+                            min: 0 
+                        }}
+                    />
+                  </Box>
                     <Button type="submit">Add</Button>
                 </Stack>
             </form>
