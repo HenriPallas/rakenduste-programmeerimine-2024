@@ -41,6 +41,33 @@ const cats = [
     res.send(cats);
   };
   
-  exports.update = (req, res) => {};
+  exports.update = (req, res) => {
+    const { id, name } = req.body;
+
+    const cat = cats.find((cat) => cat.id === id);
+    if (!cat) {
+      return res
+        .status(418)
+        .send({ type: "Error", message: "Entry not found" });
+    }
+
+    cat.name = name !== undefined ? name : cat.name;
+    cat.updatedAt = Date.now();
+
+    res.send(cat);
+  };
   
-  exports.delete = (req, res) => {};
+  exports.delete = (req, res) => {
+    const { id } = req.body;
+
+    const cat = cats.find((cat) => cat.id === id);
+    if (!cat) {
+      return res
+        .status(418)
+        .send({ type: "Error", message: "Entry not found" });
+    }
+
+    cat.deleted = true;
+
+    res.send({cat});
+  };

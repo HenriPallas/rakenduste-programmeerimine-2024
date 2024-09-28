@@ -13,9 +13,10 @@ type Todo = {
 type EditTodoProps = {
     todo: Todo;
     fetchTodos: () => void;
+    closeAccordion: () => void;
 };
 
-const EditTodo = ({ todo, fetchTodos }: EditTodoProps) => {
+const EditTodo = ({ todo, fetchTodos, closeAccordion }: EditTodoProps) => {
 
     const [title, setTitle] = useState(todo.title);
     const [priority, setPriority] = useState(todo.priority);
@@ -35,11 +36,13 @@ const EditTodo = ({ todo, fetchTodos }: EditTodoProps) => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title: title, priority: priority }),
+          body: JSON.stringify({ id: todo.id, title: title, priority: priority }),
         });
   
         if (response.ok) {
           console.log("Success", response);
+          fetchTodos();
+          closeAccordion();
           // Snackbar success
         } else {
           console.warn("No success");

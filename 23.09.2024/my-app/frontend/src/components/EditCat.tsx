@@ -12,9 +12,10 @@ type Cat = {
 type EditCatProps = {
     cat: Cat;
     fetchCats: () => void;
+    closeAccordion: () => void;
 };
 
-const EditCat = ({ cat, fetchCats }: EditCatProps) => {
+const EditCat = ({ cat, fetchCats, closeAccordion }: EditCatProps) => {
 
     const [name, setName] = useState(cat.name);
 
@@ -32,11 +33,13 @@ const EditCat = ({ cat, fetchCats }: EditCatProps) => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name: name }),
+          body: JSON.stringify({ id: cat.id, name: name }),
         });
   
         if (response.ok) {
           console.log("Success", response);
+          fetchCats();
+          closeAccordion();
           // Snackbar success
         } else {
           console.warn("No success");

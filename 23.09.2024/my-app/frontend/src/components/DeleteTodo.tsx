@@ -12,8 +12,12 @@ const DeleteTodo = ({ todoID, fetchTodos }: DeleteTodoProps) => {
         
         if (confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:8080/todos/${todoID}`, {
+                const response = await fetch(`http://localhost:8080/todos`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id: todoID }),
                 });
     
                 if (response.ok) {

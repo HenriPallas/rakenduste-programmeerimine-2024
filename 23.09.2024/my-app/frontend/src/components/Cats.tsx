@@ -34,13 +34,19 @@ const Cats = () => {
     setExpanded(newExpanded ? panel : false);
   };
 
+  const filteredCats = cats.filter(cat => !cat.deleted);
+
+  const closeAccordion = () => {
+    setExpanded(false);
+  };
+
   return (
     <Box>
 
       <Typography variant="h3">Cats</Typography>
 
         <List>
-          {cats.map((cat) => (
+          {filteredCats.map((cat) => (
             <ListItem key={cat.id}>
               <Accordion expanded={expanded === `cat${cat.id}`} onChange={handleChange(`cat${cat.id}`)}>
                 <AccordionSummary
@@ -51,7 +57,7 @@ const Cats = () => {
                 {cat.name}
                 </AccordionSummary>
                 <AccordionDetails>
-                  <EditCat cat={cat} fetchCats={fetchCats}/>
+                  <EditCat cat={cat} fetchCats={fetchCats} closeAccordion={closeAccordion}/>
                   <DeleteCat catID={cat.id} fetchCats={fetchCats}/>
                 </AccordionDetails>
               </Accordion>

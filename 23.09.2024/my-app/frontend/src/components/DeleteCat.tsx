@@ -12,8 +12,12 @@ const DeleteCat = ({ catID, fetchCats }: DeleteCatProp) => {
         
         if (confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:8080/cats/${catID}`, {
+                const response = await fetch(`http://localhost:8080/cats`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id: catID }),
                 });
     
                 if (response.ok) {

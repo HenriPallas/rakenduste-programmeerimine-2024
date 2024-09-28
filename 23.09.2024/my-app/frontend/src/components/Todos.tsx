@@ -35,13 +35,19 @@ const Todos = () => {
     setExpanded(newExpanded ? panel : false);
   };
 
+  const filteredTodos = todos.filter(todo => !todo.deleted).sort((a, b) => b.priority - a.priority);
+
+  const closeAccordion = () => {
+    setExpanded(false);
+  };
+
   return (
     <Box>
 
       <Typography variant="h3">To-do list</Typography>
 
         <List>
-          {todos.map((todo) => (
+          {filteredTodos.map((todo) => (
             <ListItem key={todo.id}>
               <Accordion expanded={expanded === `todo${todo.id}`} onChange={handleChange(`todo${todo.id}`)}>
                 <AccordionSummary
@@ -52,7 +58,7 @@ const Todos = () => {
                 {todo.title}
                 </AccordionSummary>
                 <AccordionDetails>
-                  <EditTodo todo={todo} fetchTodos={fetchTodos}/>
+                  <EditTodo todo={todo} fetchTodos={fetchTodos} closeAccordion={closeAccordion}/>
                   <DeleteTodo todoID={todo.id} fetchTodos={fetchTodos}/>
                 </AccordionDetails>
               </Accordion>
