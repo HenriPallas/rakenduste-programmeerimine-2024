@@ -3,6 +3,7 @@ import { CssBaseline } from '@mui/material';
 import "./App.css";
 import { theme1, theme2, theme3, theme4, theme5 } from './style/Palettes';
 import Sitecontent from './components/Sitecontent';
+import EventListener from './components/Eventlistener';
 
 const theme = theme3;
 
