@@ -66,7 +66,7 @@ const todos = [
     todo.priority = priority !== undefined ? priority : todo.priority;
     todo.updatedAt = Date.now();
 
-    res.send(todo);
+    res.send(todo, req.token);
   };
   
   exports.delete = (req, res) => {

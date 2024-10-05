@@ -3,6 +3,7 @@ import Header from "./Appbar";
 import Cats from "./Cats";
 import Todos from "./Todos";
 import EventListener from "./Eventlistener";
+import TodoVerify from "./TodoVerify";
 
 const Sitecontent = () => {
     return (
@@ -18,6 +19,7 @@ const Sitecontent = () => {
                             <Todos />
                         </Paper>
                         <EventListener />
+                        <TodoVerify />
                     </Stack>
                 </Grid2>
             </Grid2>
