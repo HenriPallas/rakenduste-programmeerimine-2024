@@ -46,20 +46,22 @@ const SubmitTodo = ({fetchTodos}: SubmitTodoProps) => {
         >
             <form onSubmit={handleSubmit}>
                 <Stack>
-                  <Box>
-                    <TextField
-                        label="To-do title"
-                        onChange={(event) => setTitle(event.target.value)}
-                    />
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Stack>
+                      <TextField
+                          label="To-do title"
+                          onChange={(event) => setTitle(event.target.value)}
+                      />
 
-                    <TextField 
-                        label="Priority"
-                        type="number"
-                        onChange={(event) => setPriority(Number(event.target.value))}
-                        inputProps={{ 
-                            min: 0 
-                        }}
-                    />
+                      <TextField 
+                          label="Priority"
+                          type="number"
+                          onChange={(event) => setPriority(Number(event.target.value))}
+                          inputProps={{ 
+                              min: 0 
+                          }}
+                      />
+                    </Stack>
                   </Box>
                     <Button type="submit">Add</Button>
                 </Stack>
