@@ -53,4 +53,9 @@ const tokenPass = "sssh"
     })
   };
   
-  module.exports = { todosRouteMiddleware, todosGetRouteMiddleware, signToken, verifyToken };
+  module.exports = { 
+    todosRouteMiddleware, 
+    todosGetRouteMiddleware, 
+    signToken, 
+    verifyToken 
+  };

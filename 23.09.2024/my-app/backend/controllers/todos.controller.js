@@ -26,6 +26,7 @@ const todos = [
   ];
   
   exports.create = (req, res) => {
+    console.log("creator triggered!")
     const { title, priority } = req.body;
   
     if (!title || title === "") {
@@ -66,7 +67,7 @@ const todos = [
     todo.priority = priority !== undefined ? priority : todo.priority;
     todo.updatedAt = Date.now();
 
-    res.send(todo, req.token);
+    res.send(todo);
   };
   
   exports.delete = (req, res) => {
